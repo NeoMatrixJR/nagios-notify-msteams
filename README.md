@@ -31,6 +31,9 @@ pip3 install -r requirements.txt
 ```bash
 # change to your Nagios URL:
 NAGIOS_URL = "http://nagios.my.lan/cgi-bin/nagios3"
+
+#if using Nagios XI:
+NAGIOS_URL = "http://nagios.my.lan"
 ```
 
 #### Edit Nagios --> contacts.cfg
@@ -67,6 +70,9 @@ define command {
 
 # help debug config
 /.../notify-msteams.py "HOST" --debug > /your-log-path/nag-teams-debug.log 2>&1
+
+# If using Nagios XI, add the commands via UI as above, but use "XI_HOST" or "XI_SERVICE"
+Command:  /your-path-to-commands/notify-msteams.py "XI_HOST"
 ```
 
 #### Files:
@@ -77,6 +83,8 @@ define command {
 * `templates/service.json.jinja` service notify template for MS-Adaptive Card format.
 * `templates/host_simple.json.jinja` host notify simple message template
 * `templates/service_simple.json.jinja` service notify simple message template
+* `templates/xi_host.json.jinja` host notify template for MS-Adaptive Cards - for use with Nagios XI.
+* `templates/xi_service.json.jinja` service notify template for MS-Adaptive Cards - for use with Nagios XI.
 
 #### Files used for debugging/development:
 
